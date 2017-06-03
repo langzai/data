@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查询列表</title>
+	<meta name=”viewport” content=”width=device-width, initial-scale=1″ />
+	<!--[if lt IE9]> 
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!--[if lte IE 8]> 
+	<noscript>
+	     <style>.html5-wrappers{display:none!important;}</style>
+	     <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
+	     </div>
+	</noscript>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="static/css/reset.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 768px)" href="static/css/list-768.css" />
+	<link rel="stylesheet" type="text/css" media="screen and (min-device-width: 768px)" href="static/css/list.css" />
+</head>
+<body>
+	<br>
+	<header>
+		<div class="search">
+			<a href = ''><h1>搜索引擎测试</h1></a>
+			<form action=""  method="post">
+
+				{% csrf_token %}
+            	{{form}}
+            	<input type ="submit" value="提交" class="search_btn">
+
+
+			</form>
+		</div>
+		<div class="tips">返回结果用时<span class="key">{{search_time}}s</span></div>
+	</header>
+	<br>
+	<hr>
+	<div class="main">
+		<ul class="search_list">
+		{% if  content_list  %}
+				{% for title, weight ,content in content_list %}
+
+					<li>
+						<h1 class="title"><a href=   'data/{{ title }}'>  {{ title }}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp权值：{{ weight }}</a></h1>
+						<p class="summary">
+							{% for word in content %}
+								{% if word in search_word %}
+								<span class="key">{{  word  }}</span>
+								{% else %}
+								{{  word  }} 
+								{% endif %}
+							{% endfor %}
+						</p>
+						
+					</li>
+				{% endfor %}
+		{% else %}
+		<h1 > 没有搜索结果 </h1>
+		{% endif %}
+
+
+			
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+.search{
+	width: 100%;
+	clear: both;
+	line-height: 50px;
+}
+.search h1, .search .input{
+	float: left;
+}
+.search h1{
+	font-size: 28px;
+	width: 168px;
+	margin: 0 10px;
+}
+.search .search_txt{
+	height: 30px;
+	width: 300px;
+	padding: 0 10px;
+	border: 1px solid gray;
+	box-sizing: border-box;
+}
+.search .search_num{
+	height: 30px;
+	width: 60px;
+	padding: 0 4px;
+	border: 1px solid gray;
+	box-sizing: border-box;
+}
+.search .search_btn{
+	height: 30px;
+	width: 60px;
+	padding: 0 4px;
+	border: 1px solid gray;
+	box-sizing: border-box;
+	background-color: #3385ff;
+	color: white;
+	cursor: pointer;
+}
+.search .search_btn:hover{
+ 	background: gray;
+}
+.tips{
+	margin-left: 188px;
+}
+.search_list{
+	margin-left: 188px;
+	width: 900px;
+}
+.search_list li{
+	margin: 20px 0px;
+}
+.search_list li .title{
+	font-size: 16px;
+}
+.search_list li .summary{
+	font-size: 13px;
+	color: #333;
+}
+.search_list li .source{
+	font-size: 13px;
+	color: green;
+}
+.key{
+	color: red;
+}
