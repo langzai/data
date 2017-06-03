@@ -23,3 +23,5 @@ urlpatterns = [
     url(r'^data$',datatest_views.search, name = 'search'),
     url(r'^data/(?P<title>[0-9a-zA-Z_-]+)/$', datatest_views.article, name='article'),
 ]
+import os
+os.getcwd()

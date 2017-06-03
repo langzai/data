@@ -28,6 +28,22 @@ def wordSegment(words):
     words = map( lambda word : word.strip('., ;:?\'\"') , words)
     words = [ word.lower()  for word in words if len (word) >0 ]
     return list(words)
+def wordSegment_1(words):
+    words = re.split('[\s/]' , words)     #划分单词  数字中含有'.,' 不能用 '.,'分词
+    words = map( lambda word : word.strip('., ;:?\'\"') , words)
+    words = [ word.lower()  for word in words if len (word) >0 ]
+    len_word = len(words)
+    for i in range(len_word) : 
+        if words[i] !='s' and words[i] !='es' and  words[i] !='ed' and words[i] !='ing' :
+            if words[i].endswith('ches') or words[i].endswith('shes') or words[i].endswith('ses') or words[i].endswith('xes') or words[i].endswith('oes') :
+                words[i] = words[i][:len( words[i]) - 2]
+            elif words[i].endswith('s'):
+                words[i] = words[i][:len( words[i]) -1]
+            elif words[i].endswith('ing'):
+                words[i] = words[i][:len( words[i]) -3]
+            elif words[i].endswith('ed'):
+                words[i] = words[i][:len( words[i]) -2]                    
+    return list(words)
 
 
 def getWordList(dirname):
@@ -37,7 +53,7 @@ def getWordList(dirname):
     #for file_name in dir_list:
     #   with open(file_name) as file:
     #       words = file.read()
-    #       words = wordSegment(words)
+    #       words = wordSegment_1(words)
     #       for word in words :
     #           if word not in word_list :
     #               word_list.append(word)
@@ -49,7 +65,7 @@ def getWordList(dirname):
     #for file_name in dir_list:
     #   with open(file_name) as file:
     #       words = file.read()
-    #        words = wordSegment(words)
+    #        words = wordSegment_1(words)
     #       word_list = word_list | set(words)
     #return word_list  
     word_list = {}
@@ -58,7 +74,7 @@ def getWordList(dirname):
     for file_name in dir_list:
         with open(file_name) as file:
             words = file.read()
-            words = wordSegment(words)
+            words = wordSegment_1(words)
             for word in words:
                  if word not in word_list.keys():
                         word_list[word] = i
@@ -74,7 +90,7 @@ def getIndex(dirname):
         id_file = os.path.split(file_name)[-1]
         with open(file_name) as file:
             words = file.read()
-            words = wordSegment(words)
+            words = wordSegment_1(words)
             words_num = words_num + len(words)
             #print(words)
             for i in range(len(words)):
@@ -104,7 +120,7 @@ def getFrequencyVector(dirname):
         id_file = os.path.split(file_name)[-1]
         with open(file_name) as file:
             words = file.read()
-            words = wordSegment(words)
+            words = wordSegment_1(words)
             for word in words:
                 if id_file in frequency_vector.keys():
                     if word in frequency_vector[id_file].keys():
